@@ -1,0 +1,12 @@
+===============================================================================
+
+Some setup you must do manually if you haven't yet:
+
+  1. Add :questionable to devise method in your class.
+     Example:
+
+     User < ActiveRecord::base
+       devise :authenticatable, :questionable
+     end
+
+===============================================================================
