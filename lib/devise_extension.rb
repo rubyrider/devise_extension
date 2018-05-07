@@ -6,6 +6,7 @@ require 'devise'
 require 'devise_extension/helpers'
 require 'generators/questionable/questionable_generator'
 require 'devise_extension/models'
+require 'pp'
 
 module DeviseExtension
   include Devise

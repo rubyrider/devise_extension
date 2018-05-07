@@ -53,6 +53,7 @@ GEM
     byebug (10.0.2)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
+    database_cleaner (1.7.0)
     devise (4.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -73,6 +74,7 @@ GEM
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
+    minitest-hooks (1.4.2)
     minitest-reporters (1.2.0)
       ansi
       builder
@@ -136,7 +138,9 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  database_cleaner
   devise_extension!
+  minitest-hooks
   minitest-reporters
   sqlite3
 

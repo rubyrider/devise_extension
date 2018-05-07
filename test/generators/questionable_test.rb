@@ -20,10 +20,16 @@ class QuestionableTest < ::Rails::Generators::TestCase
     assert_file "app/models/#{model_name}.rb"
   end
   
+  test "generates new column migration for user" do
+    run_generator %w(user)
+    assert_migration "db/migrate/add_questionable_fields_to_users.rb", /t.boolean :reset_question_answer, default: true/
+    assert_migration "db/migrate/add_questionable_fields_to_users.rb", /t.datetime :last_question_updated_at/
+    assert_migration "db/migrate/add_questionable_fields_to_users.rb", /t.integer :question_answer_total_update_count, default: 0/
+  end
+  
   test 'append devise_for questionable to devise class' do
     run_generator %w(user)
-    match = /devise :questionable/
-    assert_file "app/models/user.rb", match
+    assert_file "app/models/user.rb", /devise :questionable/
   end
   
   private

@@ -10,7 +10,6 @@ class DeviseExtensionCreateSecurityQuestionAnswer < ActiveRecord::Migration[5.1]
       t.integer :state, null: false, default: 0
       t.datetime :deleted_at
 
-      t.integer :question_template_id
 
       t.timestamps null: false
     end

@@ -12,3 +12,9 @@ gemspec
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
+#
+group :test do
+  gem 'database_cleaner'
+  gem 'minitest-hooks'
+end
+

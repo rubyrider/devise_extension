@@ -22,6 +22,8 @@ module DeviseExtension
       else
         migration_template "migrations/migration.rb", "#{migration_path}/devise_extension_create_#{question_model_file}.rb", migration_version: migration_version
       end
+
+      migration_template "migrations/user_migration_existing.rb", "#{migration_path}/add_questionable_fields_to_#{table_name.downcase}.rb", migration_version: migration_version
     end
 
     def migration_data

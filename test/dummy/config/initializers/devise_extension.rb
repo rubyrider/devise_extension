@@ -4,11 +4,6 @@ DeviseExtension.setup do |config|
   
   # Maximum questions count
   config.maximum_questions = 10
-
-  # Is user
-  config.question_able = true
-  
-  config.re_question_able = false
   
   config.use_question_template = true
   

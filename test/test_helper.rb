@@ -7,6 +7,8 @@ require "rails/test_help"
 require 'shared_resources'
 require 'byebug'
 require "minitest/reporters"
+require 'minitest/hooks/default'
+require 'database_cleaner'
 
 Minitest::Reporters.use! [Minitest::Reporters::SpecReporter.new]
 
@@ -33,4 +35,16 @@ end
 
 def generate_sample_app
   system "rails new rails_app --skip-active-record --skip-test-unit --skip-spring --skip-bundle"
+end
+
+DatabaseCleaner.strategy = :transaction
+
+class Minitest::Spec
+  before :each do
+    DatabaseCleaner.start
+  end
+  
+  after :each do
+    DatabaseCleaner.clean
+  end
 end

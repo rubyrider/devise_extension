@@ -8,7 +8,7 @@ module DeviseExtension
       @user = User.create!(email: 'irfandhk@gmail.com', password: 'passw0rd')
       @question = @user.security_question_answers.create!(
           question: 'What is your name',
-          user_answer: 'My name is Rubyrider!'
+          answer: 'My name is Rubyrider!'
       )
     end
     
@@ -18,6 +18,8 @@ module DeviseExtension
     
     test 'should have answer encrypted' do
       refute @question.answer.blank?
+      
+      refute_equal @question.answer, 'My name is Rubyrider!'
       
       assert SecurityQuestionAnswer.verify_answer!(@user.id, 'My name is Rubyrider!').present?
     end

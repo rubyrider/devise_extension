@@ -1,15 +1,22 @@
 module Devise
   module Models
     module Questionable
-      
       extend ActiveSupport::Concern
       
       included do
-        has_many DeviseExtension.question_able_association.to_sym, class_name: DeviseExtension.question_able_model
+        has_many ::DeviseExtension.question_able_association.to_sym, class_name: ::DeviseExtension.question_able_model
+
+        accepts_nested_attributes_for ::DeviseExtension.question_able_association.to_sym, reject_if: :all_blank, allow_destroy: true
+
+        validates_associated ::DeviseExtension.question_able_association.to_sym
+        
+        include ::DeviseExtension::Models::UpdateCounter
+
+        ::DeviseExtension::Models::Questionable::Attachment.apply!
       end
       
       def clear_security_questions!
-        security_question_answers.map!(&:inactive!)
+        send(::DeviseExtension.question_able_association.to_sym).map(&:inactive!)
       end
       
       module ClassMethods
